@@ -6,12 +6,9 @@ var app = express();
 app.get('/api/whoami/', (req, res) => {
     var reqIP = (req.header('x-forwarded-for') || req.connection.remoteAddress);
     var langs = req.acceptsLanguages();
-    var returnObj = {'ip' : reqIP, 'language' : langs, 'browser' : req.headers['user-agent']}
+    var operSys =  req.headers['user-agent'].substr(req.headers['user-agent'].indexOf('(') + 1, req.headers['user-agent'].indexOf(')') - req.headers['user-agent'].indexOf('(') - 1)
+    var returnObj = {'ip' : reqIP, 'language' : langs[0], 'browser' : operSys}
     res.end(JSON.stringify(returnObj));
-    //console.log(langs[0]);
- //   console.log(req.headers['user-agent']);
- //console.log(req.headers)
- //console.log(req.headers['user-agent'])
 })
 
 app.listen(process.env.PORT || 3000 || 8080);
