@@ -17,7 +17,7 @@ app.get('/api/whoami/', (req, res) => {
 })
 
 app.get('/*', (req,res) => {
-    res.end('You must use the path /api/whoami');
+    res.end('Returns your IP address, system language and OS. However, you must use the path /api/whoami');
 })
 
 app.listen(process.env.PORT || 3000 || 8080);
